@@ -29,6 +29,7 @@ const LineContainer = styled.div`
   bottom: 16px;
   display: flex;
   font-weight: 700;
+  overflow: hidden;
 
   font-family: ${(props) => props.textInfo.textFamily};
   font-size: ${(props) => props.textInfo.textSize}px;
