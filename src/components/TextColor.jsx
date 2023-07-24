@@ -31,7 +31,7 @@ export const TextColor = ({ handleTextInfoChange }) => {
         <div>
           <PickerButton
             onClick={handlePickerButton}
-            currentColor={currentColor}
+            $currentColor={currentColor}
           ></PickerButton>
           {showPicker && (
             <Picker>
@@ -67,7 +67,7 @@ const TextColorContainer = styled.div`
 const PickerButton = styled.button`
   width: 18px;
   height: 18px;
-  background-color: ${(props) => props.currentColor};
+  background-color: ${(props) => props.$currentColor};
   margin: 0 160px 0 12px;
   border-radius: 5px;
 

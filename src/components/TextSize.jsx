@@ -6,10 +6,11 @@ export const TextSize = ({ handleTextInfoChange }) => {
         id="textSize"
         name="memeText"
         onChange={(e) => handleTextInfoChange(e, "textSize")}
+        defaultValue="25"
       >
         <option value="15">15</option>
         <option value="20">20</option>
-        <option value="25" selected>
+        <option value="25" defaultValue>
           25
         </option>
         <option value="30">30</option>

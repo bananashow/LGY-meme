@@ -1,12 +1,12 @@
 import { styled } from "styled-components";
 import "../assets/font.css";
 
-export const ImageEdit = ({ selectedMeme, textInfo }) => {
+export const ImageEdit = ({ selectedMeme, $textInfo }) => {
   const imageURL = require(`../assets/images/${selectedMeme}.jpg`);
   return (
     <ImageContainer>
       <img src={imageURL} alt="meme" />
-      <LineContainer textInfo={textInfo}>{textInfo.line}</LineContainer>
+      <LineContainer $textInfo={$textInfo}>{$textInfo.line}</LineContainer>
     </ImageContainer>
   );
 };
@@ -31,11 +31,11 @@ const LineContainer = styled.div`
   font-weight: 700;
   overflow: hidden;
 
-  font-family: ${(props) => props.textInfo.textFamily};
-  font-size: ${(props) => props.textInfo.textSize}px;
-  color: ${(props) => props.textInfo.textColor};
-  text-shadow: -1px 0 ${(props) => props.textInfo.textBorder},
-    0 1px ${(props) => props.textInfo.textBorder},
-    1px 0 ${(props) => props.textInfo.textBorder},
-    0 -1px ${(props) => props.textInfo.textBorder};
+  font-family: ${(props) => props.$textInfo.textFamily};
+  font-size: ${(props) => props.$textInfo.textSize}px;
+  color: ${(props) => props.$textInfo.textColor};
+  text-shadow: -1px 0 ${(props) => props.$textInfo.textBorder},
+    0 1px ${(props) => props.$textInfo.textBorder},
+    1px 0 ${(props) => props.$textInfo.textBorder},
+    0 -1px ${(props) => props.$textInfo.textBorder};
 `;

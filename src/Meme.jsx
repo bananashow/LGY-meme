@@ -27,14 +27,19 @@ export const Meme = () => {
     setTextInfo({ ...textInfo, [property]: e.target.value });
   };
   const handleDownload = () => {
-    domtoimage.toBlob(imageRef.current).then((blob) => {
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = `${selectedMeme}.png`;
-      link.click();
-      URL.revokeObjectURL(url);
-    });
+    try {
+      domtoimage.toBlob(imageRef.current).then((blob) => {
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = `${selectedMeme}.png`;
+        link.click();
+        URL.revokeObjectURL(url);
+      });
+    } catch (error) {
+      alert("다운로드 실패");
+      return;
+    }
   };
 
   return (
@@ -43,11 +48,9 @@ export const Meme = () => {
         <Wrapper>
           <h1 className="title">이경영 밈 생성기</h1>
           <MemeImageSelect handleMemeSelect={handleMemeSelect} />
-
           <div className="imageRef" ref={imageRef}>
-            <ImageEdit selectedMeme={selectedMeme} textInfo={textInfo} />
+            <ImageEdit selectedMeme={selectedMeme} $textInfo={textInfo} />
           </div>
-
           <Horizontal>
             <div className="horizental">
               <Text handleTextInfoChange={handleTextInfoChange} />
@@ -64,6 +67,11 @@ export const Meme = () => {
             </div>
           </Horizontal>
           <button onClick={handleDownload}>밈 다운받기</button>
+          <div className="notice">
+            ※ 카카오톡 브라우저와 같은 인앱 브라우저 환경에서는 일부 보안 및
+            브라우저 정책으로 인해 직접적인 파일 다운로드가 지원되지 않을 수
+            있습니다.
+          </div>
         </Wrapper>
       </Container>
     </>
@@ -75,6 +83,12 @@ const Container = styled.div`
   width: 100%;
   height: 100vh;
   overflow: hidden;
+
+  .notice {
+    color: #4b4848;
+    margin: 24px 0;
+    text-align: center;
+  }
 
   @media (max-width: 800px) {
     height: 100%;
